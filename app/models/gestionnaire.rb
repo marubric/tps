@@ -1,6 +1,7 @@
 class Gestionnaire < ApplicationRecord
   include CredentialsSyncableConcern
   include EmailSanitizableConcern
+  include ActiveRecord::SecureToken
 
   devise :database_authenticatable, :registerable, :async,
     :recoverable, :rememberable, :trackable, :validatable
@@ -142,6 +143,16 @@ class Gestionnaire < ApplicationRecord
     end
 
     Dossier.where(id: dossiers_id_with_notifications(dossiers)).group(:procedure_id).count
+  end
+
+  def login_token!
+    login_token = Gestionnaire.generate_unique_secure_token
+    update(login_token: login_token, login_token_created_at: Time.zone.now)
+    login_token
+  end
+
+  def login_token_valid?
+    30.minutes.ago < login_token_created_at
   end
 
   def dossiers_id_with_notifications(dossiers)

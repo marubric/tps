@@ -1,7 +1,9 @@
 require 'spec_helper'
+require 'login_concern'
 
 feature 'The gestionnaire part' do
   include ActiveJob::TestHelper
+  include LoginConcern
 
   let(:password) { 'secret_password' }
   let!(:gestionnaire) { create(:gestionnaire, password: password) }
@@ -116,7 +118,7 @@ feature 'The gestionnaire part' do
 
     log_out
 
-    log_in(gestionnaire.email, password)
+    log_in(gestionnaire.email, password, check_email: false)
 
     click_on procedure.libelle
     click_on dossier.user.email
@@ -173,14 +175,22 @@ feature 'The gestionnaire part' do
     expect(page).to have_text("Dossier envoyé")
   end
 
-  def log_in(email, password)
+  def log_in(email, password, check_email: true)
     visit '/'
     click_on 'Connexion'
     expect(page).to have_current_path(new_user_session_path)
 
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
-    click_on 'Se connecter'
+
+    perform_enqueued_jobs do
+      click_on 'Se connecter'
+    end
+
+    if check_email
+      login_from_the_verification_mail
+    end
+
     expect(page).to have_current_path(gestionnaire_procedures_path)
   end
 
@@ -196,7 +206,7 @@ feature 'The gestionnaire part' do
   end
 
   def test_mail(to, content)
-    mail = ActionMailer::Base.deliveries.first
+    mail = ActionMailer::Base.deliveries.last
     expect(mail.to).to match([to])
     expect(mail.body.parts.map(&:to_s)).to all(include(content))
   end

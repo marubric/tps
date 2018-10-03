@@ -1,0 +1,17 @@
+- content_for(:title, 'Lien de connexion par email')
+
+- content_for :footer do
+  = render partial: 'root/footer'
+
+#link-sent.container
+  %h1 Un lien de connexion a été envoyé à <b>#{@email}</b>
+  %p Votre authentification est réussie.
+
+  %p Néanmoins, pour des raisons de sécurité, nous vous avons envoyé un lien de connexion sur votre adresse email.
+
+  %p Pour vous connecter, veuillez cliquer sur le lien contenu dans ce mail.
+
+  %p
+    En cas de difficultés, nous restons joignable sur contact@demarches-simplifiees.fr.
+    = link_to 'contact@demarches-simplifiees.fr', 'mailto:'
+

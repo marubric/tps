@@ -1,0 +1,11 @@
+@import "constants";
+
+#link-sent {
+  b {
+    font-weight: bold;
+  }
+
+  p {
+    margin: 2 * $default-spacer auto;
+  }
+}

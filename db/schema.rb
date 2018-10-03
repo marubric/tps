@@ -365,6 +365,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_141238) do
     t.string "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "login_token"
+    t.datetime "login_token_created_at"
     t.index ["email"], name: "index_gestionnaires_on_email", unique: true
     t.index ["reset_password_token"], name: "index_gestionnaires_on_reset_password_token", unique: true
   end
