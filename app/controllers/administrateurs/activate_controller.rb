@@ -1,6 +1,8 @@
 require 'zxcvbn'
 
 class Administrateurs::ActivateController < ApplicationController
+  include TrustedDeviceConcern
+
   layout "new_application"
 
   def new
@@ -9,6 +11,9 @@ class Administrateurs::ActivateController < ApplicationController
     if !@administrateur
       flash.alert = "Le lien de validation d'administrateur a expiré, #{helpers.contact_link('contactez-nous', tags: 'lien expiré')} pour obtenir un nouveau lien."
       redirect_to root_path
+    else
+      # the administrateur activates its account from an email
+      trust_device
     end
   end
 
