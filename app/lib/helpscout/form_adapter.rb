@@ -20,6 +20,19 @@ class Helpscout::FormAdapter
     [I18n.t(TYPE_AUTRE, scope: [:support]), TYPE_AUTRE]
   ]
 
+
+  TYPE_ADMIN_RDV = 'admin demande rdv'
+  TYPE_ADMIN_QUESTION = 'admin question'
+  TYPE_ADMIN_SOUCIS = 'admin soucis'
+  TYPE_ADMIN_AUTRE = 'admin autre'
+
+  OPTIONS_ADMIN = [
+    [I18n.t(TYPE_ADMIN_QUESTION, scope: [:supportadmin]), TYPE_ADMIN_QUESTION],
+    [I18n.t(TYPE_ADMIN_RDV, scope: [:supportadmin]), TYPE_ADMIN_RDV],
+    [I18n.t(TYPE_ADMIN_SOUCIS, scope: [:supportadmin]), TYPE_ADMIN_SOUCIS],
+    [I18n.t(TYPE_ADMIN_AUTRE, scope: [:supportadmin]), TYPE_ADMIN_AUTRE]
+  ]
+
   def send_form
     conversation_id = create_conversation
 
