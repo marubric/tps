@@ -5,7 +5,8 @@
     %h1.new-h1 Contactez notre équipe
 
     .description
-      En tant qu'administration, vous pouvez nous contactez-nous via ce formulaire. Nous vous répondrons dans les plus brefs délais, par email ou par téléphone.
+      En tant qu'administration, vous pouvez nous contactez via ce formulaire. Nous vous répondrons dans les plus brefs délais, par email ou par téléphone.
+      %br Attention, ce formulaire est réservée uniquement aux organismes publics. Il ne concerne ni les particuliers, ni les entreprises, ni les associations (sauf celles reconnues d'utilité publique). Si c'est votre cas, rendez-vous sur notre <a href="/contact">formulaire de contact public.<a/>
 
     = form_tag contact_path, method: :post, multipart: true, class: 'form' do |f|
       - if !logged_in?

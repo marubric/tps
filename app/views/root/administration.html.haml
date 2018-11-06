@@ -34,9 +34,8 @@
             class: "role-panel-button-primary",
             rel: "noopener noreferrer"
 
-          = link_to "Voir la documentation",
-            DOC_URL,
-            target: "_blank",
+          = link_to "Contactez-nous",
+            "/contact-admin",
             rel: "noopener noreferrer",
             class: "role-panel-button-secondary"
 
@@ -143,6 +142,17 @@
               %br<>
               des délais de traitement
 
+  .landing-panel.cta-panel
+    .container
+      .cta-panel-wrapper
+        %div
+          %h1.cta-panel-title Découvrez comment dématérialiser
+          %p.cta-panel-explanation C'est simple et rapide
+        %div
+          %a.cta-panel-button-white{rel: 'noopener noreferrer', href:'https://doc.demarches-simplifiees.fr' }
+            Consultez notre documentation
+
+
   .landing-panel.users-panel
     .container
       %h2.landing-panel-title Ils utilisent déjà demarches-simplifiees.fr
@@ -188,11 +198,8 @@
           %h1.cta-panel-title Une question, un problème ?
           %p.cta-panel-explanation Notre équipe est disponible pour vous renseigner et vous aider
         %div
-          = contact_link "Contactez-nous",
-            tags: 'administration',
-            class: "cta-panel-button-white",
-            target: "_blank",
-            rel: "noopener noreferrer"
+          %a.cta-panel-button-white{rel: 'noopener noreferrer', href:'/contact-admin' }
+            Contactez-nous
 
   .landing-panel
     .container
