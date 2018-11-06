@@ -1,0 +1,42 @@
+- content_for(:title, 'Contact')
+
+#contact-form
+  .container
+    %h1.new-h1 Contactez notre équipe
+
+    .description
+      En tant qu'administration, vous pouvez nous contactez-nous via ce formulaire. Nous vous répondrons dans les plus brefs délais, par email ou par téléphone.
+
+    = form_tag contact_path, method: :post, multipart: true, class: 'form' do |f|
+      - if !logged_in?
+        .contact-champ
+          = label_tag :email do
+            Email professionnel
+            %span.mandatory *
+          = text_field_tag :email, params[:email], required: true
+
+      .contact-champ
+        = label_tag :type do
+          Catégorie
+          %span.mandatory *
+        = select_tag :type, options_for_select(@options_admin, params[:type])
+
+      .contact-champ
+        = label_tag :dossier_id, 'Numéro de téléphone professionnel (ligne direct)'
+        = text_field_tag :dossier_id, @dossier_id
+
+      .contact-champ
+        = label_tag :subject do
+          Sujet
+        = text_field_tag :subject, params[:subject], required: false
+
+      .contact-champ
+        = label_tag :text do
+          Message
+          %span.mandatory *
+        = text_area_tag :text, params[:text], rows: 6, required: true
+
+      = hidden_field_tag :tags, @tags&.join(',')
+
+      .send-wrapper
+        = button_tag 'Envoyer le message', type: :submit, class: 'button send primary'
