@@ -1,0 +1,43 @@
+@import "constants";
+
+.devise-confirmations {
+  .one-column-centered {
+    max-width: 600px;
+  }
+
+  p {
+    margin-bottom: $default-padding;
+  }
+
+  .confirmation-preamble {
+    margin-bottom: $default-padding * 4;
+  }
+
+  .confirmation-instructions {
+    font-size: 1.15em;
+  }
+
+  .confirmation-resend {
+    margin-top: $default-padding * 4;
+
+    .form {
+      display: flex;
+      flex-wrap: wrap;
+
+      input,
+      button {
+        margin-bottom: $default-spacer;
+      }
+
+      input[type=email] {
+        width: auto;
+        flex-grow: 1;
+        margin-right: $default-spacer;
+      }
+    }
+
+    label {
+      display: none;
+    }
+  }
+}

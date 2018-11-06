@@ -39,7 +39,7 @@ feature 'Invitations' do
         fill_in 'user_password', with: user_password
         click_on 'Créer un compte'
 
-        expect(page).to have_content("lien d'activation")
+        expect(page).to have_content('lien d’activation')
 
         # Confirm the email
         user = User.find_by(email: invite.email)
