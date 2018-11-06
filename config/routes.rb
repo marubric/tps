@@ -132,6 +132,9 @@ Rails.application.routes.draw do
   get "contact", to: "support#index"
   post "contact", to: "support#create"
 
+  get "contact-admin", to: "support_admin#index"
+  post "contact-admin", to: "support_admin#create"
+
   post "webhooks/helpscout", to: "webhook#helpscout"
   match "webhooks/helpscout", to: lambda { |_| [204, {}, nil] }, via: :head
 
